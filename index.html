@@ -4,37 +4,101 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Shop</title>
   </head>
-  <body>
+  <body class="text-sm">
     <main id="app" class="flex flex-col min-h-screen">
+      <!-- header -->
       <header class="border-b-2 border-b-gray-700 py-3">
         <div class="container mx-auto">
           <div class=" flex justify-between">
             <div class="">
-              <h1 class=" font-bold text-2xl">Sneaker Shop</h1>
+              <h1 class=" font-bold text-3xl">Online Shop</h1>
               <h2 class=" text-neutral-500 text-sm">E-commerce</h2>
             </div>
             <div class=" flex gap-3 items-center">
-              <button type="button" class="text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+              <button type="button" class="text-gray-700 border border-gray-700 hover:bg-gray-600 hover:text-white focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>              
                 <span class="sr-only">Icon description</span>
               </button>
-              <button type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+              <button type="button" class="relative text-white bg-gray-950 hover:bg-gray-600 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                 </svg>              
                 <span class="sr-only">Icon description</span>
+                <div id="cartItemCount" class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">0</div>
               </button>
             </div>
           </div>
         </div>
       </header>
-      <section id="section-cartegory"></section>
-      <section id="section-product"></section>
 
+      <!-- cart component -->
+      <section id="drawer-right-example" class="fixed top-0 right-0 z-40 h-screen overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800 flex flex-col min-h-screen" tabindex="-1" aria-labelledby="drawer-right-label">
+        <div class="flex flex-col min-h-screen p-4">
+          <div class="cart-header">
+            <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+              </svg>Your Cart
+              ( <span id="countItem">0</span> )
+            </h5>
+              
+            <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              </svg>
+              <span class="sr-only">Close menu</span>
+            </button>
+          </div>
+
+          <!-- cart in card -->
+          <div id="shopCartGroup" class="flex flex-col overflow-y-scroll over flex-grow h-[300px] gap-5">
+          <!-- empty-cart -->
+            <div class="hidden last:flex flex-col justify-center items-center h-[500px]">
+              <img src="./src/js/image/undraw_empty_cart_co35.svg" class="w-32" alt="">
+              <p class="font-bold font-sans pt-3">There is no items in your cart.</p>
+            </div>
+          </div>
+          <!-- cart-total -->
+          <div class="cart-footer mt-auto py-3">
+              <div class="flex justify-between items-center">
+                <p class="font-bold">Total</p>
+                <p class="font-bold">
+                  $ <span id="cartTotal" class="cart-net-total">0</span>
+                </p>
+              </div>
+              <button class="card-btn border border-gray-700 w-full p-1 rounded bg-gray-900 text-gray-50 mt-2">Checkout</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- section-category -->
+      <section id="section-cartegory" class="py-3">
+        <div class="container mx-auto">
+          <div class="">
+            <h1 class="mb-2 font-bold">Product Categories</h1>
+            <!-- Title group -->
+            <div id="categoryGroup" class="flex gap-2 overflow-x-scroll md:overflow-x-auto text-nowrap">
+              <button class="cat-btn border border-gray-700 duration-200 active:scale-75 bg-gray-700 text-gray-50 rounded px-2 py-1">All</button>
+            </div>          
+          </div>
+        </div>
+      </section>
+
+      <!-- section product -->
+      <section id="section-product">
+        <div class="container mx-auto">
+          <!-- Card group -->
+        <div id="productGroup" class="product-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-3 gap-2 md:gap-3 lg:gap-4 xl:gap-5 ">
+          
+        </div>
+        </div>
+      </section>
+
+      <!-- footer -->
       <footer class="bg-gray-700 py-5 mt-auto">
         <div class="container mx-auto">
           <div class="flex justify-between items-center">
@@ -52,6 +116,76 @@
           </div>
         </div>
       </footer>
+
+      <!-- category-template -->
+      <template id="categoryTemplate">
+        <button class="cat-btn border duration-200 active:scale-75 border-gray-700 rounded px-2 py-1">Electronics</button>
+      </template>
+
+      <!-- card-template -->
+      <template id="productTemplate">
+        <!-- Card 1-->
+        <div class="product-card col-span-1 w-full">
+          <img class="card-image h-[120px] -mb-[50px] ms-3 " src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="">
+          <!-- card title -->
+          <div class=" border border-gray-500 rounded-tr-none rounded-bl-none rounded-3xl px-3 py-5">
+            <h1 class="card-title font-bold text-sm mt-[50px] line-clamp-1">Mens Cotton Jacket</h1>
+            <p class="card-para mt-2 line-clamp-3">
+              Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.
+            </p>
+            <!-- Rating -->
+            <div class=" mt-2 flex justify-between mb-2">
+              <div class=" flex card-rate">
+                                                                                                                    
+              </div>
+              <p class="card-rating">(4.7/500)</p>
+            </div>
+            <hr class=" border-gray-400 mb-2">
+            <!-- Price -->
+            <p class="font-bold text-base mb-2">
+              $<span class="card-price">55.99</span>
+            </p>
+            <!-- Add to cart -->
+            <button class="card-btn border border-gray-700 duration-200 active:scale-75 w-full p-2 rounded bg-gray-900 text-gray-50">Add to cart</button>
+          </div>                
+        </div>
+      </template>
+
+      <!-- shop-cart-template -->
+      <template id="shopCartTemplate">
+        <div class="shop-cart">
+                    
+          <img class="shop-cart-img h-[60px] ms-3 -mb-[25px] relative z-10" src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="">
+          <div class="border border-gray-500 rounded-tr-none rounded-bl-none rounded-3xl px-3 py-2 relative">
+            <button class="absolute right-3 cart-btn-remove">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 stroke-red-600 pointer-events-none">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+              </svg>
+            </button>
+            <h1 class="shop-cart-title line-clamp-2 font-bold mt-[25px]">Mens Cotton Jacket"</h1>
+          <!-- cart-price and btn -->
+          <div class="flex justify-between mt-2">
+            <p class="font-bold">
+              $ <span class="shop-cart-price">55.99</span>
+            </p>
+
+          <div class="flex items-center gap-3 bg-green-200 px-2 rounded">
+            <button class="sub-cart-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+              </svg>              
+          </button>
+          <span class="shop-cart-quantity">1</span>
+          <button class="add-cart-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>              
+          </button>
+          </div>
+          </div>
+          </div>
+        </div>
+      </template>
     </main>
     <script type="module" src="/main.js"></script>
   </body>
