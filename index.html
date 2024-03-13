@@ -82,7 +82,7 @@
             <h1 class="mb-2 font-bold">Product Categories</h1>
             <!-- Title group -->
             <div id="categoryGroup" class="flex gap-2 overflow-x-scroll md:overflow-x-auto text-nowrap">
-              <button class="cat-btn border border-gray-700 duration-200 active:scale-75 bg-gray-700 text-gray-50 rounded px-2 py-1">All</button>
+              <button class="cat-btn border border-gray-700 duration-200 active:scale-95 active rounded px-2 py-1">All</button>
             </div>          
           </div>
         </div>
@@ -119,7 +119,7 @@
 
       <!-- category-template -->
       <template id="categoryTemplate">
-        <button class="cat-btn border duration-200 active:scale-75 border-gray-700 rounded px-2 py-1">Electronics</button>
+        <button class="cat-btn border duration-200 active:scale-95 border-gray-700 rounded px-2 py-1">Electronics</button>
       </template>
 
       <!-- card-template -->
@@ -146,7 +146,7 @@
               $<span class="card-price">55.99</span>
             </p>
             <!-- Add to cart -->
-            <button class="card-btn border border-gray-700 duration-200 active:scale-75 w-full p-2 rounded bg-gray-900 text-gray-50">Add to cart</button>
+            <button class="card-btn border border-gray-700 duration-200 active:scale-95 disabled:active:scale-100 w-full p-2 rounded disabled:bg-gray-900 disabled:text-gray-50 text-gray-950 font-bold">Add to cart</button>
           </div>                
         </div>
       </template>
@@ -166,18 +166,19 @@
           <!-- cart-price and btn -->
           <div class="flex justify-between mt-2">
             <p class="font-bold">
-              $ <span class="shop-cart-price">55.99</span>
+              $ <span class="shop-cart-cost">55.99</span>
+              <span class="shop-cart-price hidden">55.99</span>
             </p>
 
           <div class="flex items-center gap-3 bg-green-200 px-2 rounded">
-            <button class="sub-cart-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <button class="sub-cart-btn pointer-events-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
               </svg>              
           </button>
           <span class="shop-cart-quantity">1</span>
-          <button class="add-cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+          <button class="add-cart-btn pointer-events-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>              
           </button>

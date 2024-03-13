@@ -17,7 +17,9 @@ export const renderCategory = (categories) => {
 export const categoryBtnHandler = (event) => {
     if (event.target.classList.contains("cat-btn")) {
         const currentCategory = event.target.innerText;
-        // console.log(currentCategory);
+        const currentCategoryActive = event.target;
+        document.querySelector(".cat-btn.active")?.classList.remove("active")
+        currentCategoryActive.classList.add("active")
         renderProduct(products.filter(product => product.category === currentCategory || currentCategory === "All"));
     };
 }

@@ -27,6 +27,12 @@ export const createProduct = (productCard) => {
     template.querySelector(".card-image").src = productCard.image;
 
     template.querySelector(".card-rate").innerHTML = renderStar(productCard.rating.rate)
+
+    const isExitedCart = shopCartGroup.querySelector(`[product-cart-id='${productCard.id}']`)
+    if(isExitedCart) {
+      template.querySelector(".card-btn").setAttribute("disabled", true);
+      template.querySelector(".card-btn").innerText = "Added"
+    }
     return template;
 }
 
@@ -39,6 +45,9 @@ export const renderProduct = (products) => {
 
 export const shopCartBtnHandler = (event) => {
     if (event.target.classList.contains("card-btn")) {
+        const currentBtn = event.target;
+        currentBtn.setAttribute("disabled", true);
+        currentBtn.innerText = "Added"
         const currentProductCard = event.target.closest(".product-card");
         const currentProductId = parseInt(currentProductCard.getAttribute("product-id"));
         const currentProduct = products.find(product => product.id === currentProductId);
