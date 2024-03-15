@@ -38,9 +38,6 @@ export const cartBtnRemoveHandler = (event) => {
     if(event.target.classList.contains("cart-btn-remove")) {
         const currentCart = event.target.closest(".shop-cart");
         const currentCartProductId = currentCart.getAttribute("product-cart-id");
-        const currentCardProduct = productGroup.querySelector(`[product-id='${currentCartProductId}']`);
-
-        const currentAddToCartBtn = currentCardProduct.querySelector(".card-btn");
         
         Swal.fire({
             title: "Are you sure?",
@@ -55,8 +52,13 @@ export const cartBtnRemoveHandler = (event) => {
               currentCart.remove();
               updateCartNetTotal();
               updateCountShop();
+              const currentCardProduct = productGroup.querySelector(`[product-id='${currentCartProductId}']`);
+
+              if(currentCardProduct){
+                const currentAddToCartBtn = currentCardProduct.querySelector(".card-btn");
               currentAddToCartBtn.removeAttribute("disabled")
               currentAddToCartBtn.innerText = "Add to cart"
+              }
 
               const Toast = Swal.mixin({
                 toast: true,
